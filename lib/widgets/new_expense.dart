@@ -86,7 +86,6 @@ class _NewExpenseState extends State<NewExpense> {
     super.dispose();
   }
 
-  // Build the UI
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -5,7 +5,6 @@ import 'package:expense_tracker/models/expense.dart';
 
 // A widget that displays a chart summarizing expenses for different categories.
 class Chart extends StatelessWidget {
-  // Constructor to initialize the Chart widget with a list of expenses.
   const Chart({Key? key, required this.expenses}) : super(key: key);
 
   // List of expenses to be visualized in the chart.

@@ -20,7 +20,6 @@ class ExpensesList extends StatelessWidget {
   Widget build(BuildContext context) {
     // Build and create a scrollable list using ListView.builder.
     return ListView.builder(
-      // The number of items in the list.
       itemCount: expenses.length,
       // The builder callback is called for each item in the list.
       itemBuilder: (ctx, index) => Dismissible(
