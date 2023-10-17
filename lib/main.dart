@@ -13,6 +13,11 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
+  // this commented code allows locking of the app in portrait mode
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((fn) {));
   runApp(
     MaterialApp(
       // Defining the dark theme properties
@@ -55,12 +60,12 @@ void main() {
         ),
         // Customizing text styles
         textTheme: ThemeData().textTheme.copyWith(
-          titleLarge: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 16,
-          ),
-        ),
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 16,
+              ),
+            ),
       ),
       // Setting the theme mode to follow the system's theme
       themeMode: ThemeMode.system,

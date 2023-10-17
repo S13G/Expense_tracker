@@ -34,6 +34,7 @@ class _ExpensesState extends State<Expenses> {
   // Function to open the add expense overlay
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      useSafeArea: true, // prevents the modal from reaching the camera
       isScrollControlled: true,
       context: context,
       builder: (ctx) => NewExpense(onAddExpense: _addExpense),
@@ -77,6 +78,8 @@ class _ExpensesState extends State<Expenses> {
   // Build method to create the UI
   @override
   Widget build(BuildContext context) {
+    // find out the amount of width available
+    final width = MediaQuery.of(context).size.width;
     // Default content if no expenses are available
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some'),
@@ -102,16 +105,29 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          // Chart to visualize expenses
-          Chart(expenses: _registeredExpenses),
-          // Expanded widget to allow for dynamic resizing of the ExpensesList
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: width < 600
+          ? Column(
+              children: [
+                // Chart to visualize expenses
+                Chart(expenses: _registeredExpenses),
+                // Expanded widget to allow for dynamic resizing of the ExpensesList
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                // Chart to visualize expenses
+                Expanded(
+                  child: Chart(expenses: _registeredExpenses),
+                ),
+                // Expanded widget to allow for dynamic resizing of the ExpensesList
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            ),
     );
   }
 }
