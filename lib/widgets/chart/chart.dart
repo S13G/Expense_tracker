@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:expense_tracker/models/expense.dart';
 
+// A widget that displays a chart summarizing expenses for different categories.
 class Chart extends StatelessWidget {
-  const Chart({super.key, required this.expenses});
+  // Constructor to initialize the Chart widget with a list of expenses.
+  const Chart({Key? key, required this.expenses}) : super(key: key);
 
+  // List of expenses to be visualized in the chart.
   final List<Expense> expenses;
 
+  // Create expense buckets for different expense categories.
   List<ExpenseBucket> get buckets {
     return [
       ExpenseBucket.forCategory(expenses, Category.food),
@@ -17,6 +21,7 @@ class Chart extends StatelessWidget {
     ];
   }
 
+  // Calculate the maximum total expense among all buckets.
   double get maxTotalExpense {
     double maxTotalExpense = 0;
 
@@ -29,10 +34,13 @@ class Chart extends StatelessWidget {
     return maxTotalExpense;
   }
 
+  // Build the UI for the chart.
   @override
   Widget build(BuildContext context) {
+    // Check if the device is in dark mode.
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.symmetric(
@@ -41,12 +49,13 @@ class Chart extends StatelessWidget {
       ),
       width: double.infinity,
       height: 180,
+      // Decorate the container with a gradient background.
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
           colors: [
             Theme.of(context).colorScheme.primary.withOpacity(0.3),
-            Theme.of(context).colorScheme.primary.withOpacity(0.0)
+            Theme.of(context).colorScheme.primary.withOpacity(0.0),
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
@@ -58,17 +67,19 @@ class Chart extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                // chart calculation
-                for (final bucket in buckets) // alternative to map()
+                // Display chart bars for each expense bucket.
+                for (final bucket in buckets)
                   ChartBar(
+                    // Calculate the fill percentage for the bar.
                     fill: bucket.totalExpenses == 0
                         ? 0
                         : bucket.totalExpenses / maxTotalExpense,
-                  )
+                  ),
               ],
             ),
           ),
           const SizedBox(height: 12),
+          // Display icons for each expense category below the chart.
           Row(
             children: buckets
                 .map(
@@ -88,7 +99,7 @@ class Chart extends StatelessWidget {
                   ),
                 )
                 .toList(),
-          )
+          ),
         ],
       ),
     );

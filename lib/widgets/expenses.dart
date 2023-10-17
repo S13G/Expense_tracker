@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
@@ -16,7 +14,9 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
+  // List to store registered expenses
   final List<Expense> _registeredExpenses = [
+    // Example expenses, can be replaced with real data or loaded dynamically
     Expense(
       title: 'Flutter Course',
       amount: 19.99,
@@ -28,9 +28,10 @@ class _ExpensesState extends State<Expenses> {
       amount: 15.69,
       date: DateTime.now(),
       category: Category.leisure,
-    )
+    ),
   ];
 
+  // Function to open the add expense overlay
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
@@ -39,41 +40,49 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+  // Function to add a new expense
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
+  // Function to remove an expense
   void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
       _registeredExpenses.remove(expense);
     });
-    // clears old info messages immediately another action is performed
+
+    // Clear old info messages immediately after another action is performed
     ScaffoldMessenger.of(context).clearSnackBars();
-    // show an info message once removed
+
+    // Show an info message once removed
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 3),
         content: const Text('Expense deleted'),
         action: SnackBarAction(
-            label: 'Undo',
-            onPressed: () {
-              setState(() {
-                _registeredExpenses.insert(expenseIndex, expense);
-              });
-            }),
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
       ),
     );
   }
 
+  // Build method to create the UI
   @override
   Widget build(BuildContext context) {
+    // Default content if no expenses are available
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some'),
     );
 
+    // If there are expenses, display the ExpensesList
     if (_registeredExpenses.isNotEmpty) {
       mainContent = ExpensesList(
         expenses: _registeredExpenses,
@@ -81,23 +90,26 @@ class _ExpensesState extends State<Expenses> {
       );
     }
 
+    // The main scaffold that represents the entire screen
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Expense Tracker'),
         actions: [
+          // Button to open the add expense overlay
           IconButton(
             onPressed: _openAddExpenseOverlay,
             icon: const Icon(Icons.add),
-          )
+          ),
         ],
       ),
       body: Column(
         children: [
+          // Chart to visualize expenses
           Chart(expenses: _registeredExpenses),
-          // wrap in expanded because you're having a column in a column
+          // Expanded widget to allow for dynamic resizing of the ExpensesList
           Expanded(
             child: mainContent,
-          )
+          ),
         ],
       ),
     );
