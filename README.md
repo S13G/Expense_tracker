@@ -11,9 +11,13 @@ Welcome to the Flutter Expense Tracker App! This mobile application is designed 
 - **Charts and Statistics**: Visualize your spending patterns through interactive charts and statistics.
 
 ## Screenshots
-- Dark mode
+
+### Dark mode
+
 ![Screenshot 1](media%2Fscreenshot1.png)
-- Light mode
+
+### Light mode
+
 ![Screenshot 2](media%2Fscreenshot2.png)
 
 ## Getting Started
@@ -23,13 +27,13 @@ Welcome to the Flutter Expense Tracker App! This mobile application is designed 
 - Flutter installed on your machine. [Install Flutter](https://flutter.dev/docs/get-started/install)
 
 - Clone this repository.
-```git clone https://github.com/S13G/Expense_tracker.git```
+  `git clone https://github.com/S13G/Expense_tracker.git`
 
 - Enter folder
-```cd Expense_tracker```
+  `cd Expense_tracker`
 
 - Install dependencies
-```flutter pub get```
+  `flutter pub get`
 
 - Run the app
-```flutter run```
+  `flutter run`
