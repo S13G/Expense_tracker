@@ -12,20 +12,21 @@ Welcome to the Flutter Expense Tracker App! This mobile application is designed 
 
 ## Screenshots
 - Dark mode
-![Screenshot 1](media/screenshot1.png)
+![Screenshot 1](media%2Fscreenshot1.png)
 - Light mode
-![Screenshot 2](media/screenshot2.png)
+![Screenshot 2](media%2Fscreenshot2.png)
 
 ## Getting Started
 
 ### Prerequisites
 
 - Flutter installed on your machine. [Install Flutter](https://flutter.dev/docs/get-started/install)
-- Clone this repository.
 
-```bash
-git clone https://github.com/S13G/Expense_tracker.git
-cd Expense_tracker```
+- Clone this repository.
+```git clone https://github.com/S13G/Expense_tracker.git```
+
+- Enter folder
+```cd Expense_tracker```
 
 - Install dependencies
 ```flutter pub get```
