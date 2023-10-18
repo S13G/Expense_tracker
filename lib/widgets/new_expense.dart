@@ -292,7 +292,7 @@ class _NewExpenseState extends State<NewExpense> {
                       // Cancel button
                       TextButton(
                         onPressed: () {
-                          // Removes overlay from screen
+                          // Removes overlay from screens
                           Navigator.pop(context);
                         },
                         child: const Text('Cancel'),
